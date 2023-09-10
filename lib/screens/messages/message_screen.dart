@@ -17,16 +17,16 @@ class MessagesScreen extends StatelessWidget {
   AppBar buildAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
-      title: Row(
+      title: const Row(
         children: [
-          const BackButton(),
-          const CircleAvatar(
+          BackButton(),
+          CircleAvatar(
             backgroundImage: AssetImage("assets/images/user_2.png"),
           ),
-          const SizedBox(width: kDefaultPadding * 0.75),
+          SizedBox(width: kDefaultPadding * 0.75),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
                 "Kristin Watson",
                 style: TextStyle(fontSize: 16),

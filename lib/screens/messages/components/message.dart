@@ -16,7 +16,7 @@ class Message extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget messageContaint(ChatMessage message) {
+    Widget messageContain(ChatMessage message) {
       switch (message.messageType) {
         case ChatMessageType.text:
           return TextMessage(message: message);
@@ -42,7 +42,7 @@ class Message extends StatelessWidget {
             ),
             const SizedBox(width: kDefaultPadding / 2),
           ],
-          messageContaint(message),
+          messageContain(message),
           if (message.isSender) MessageStatusDot(status: message.messageStatus)
         ],
       ),

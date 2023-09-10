@@ -1,11 +1,32 @@
+import 'package:chat/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
+class ChatInputField extends StatefulWidget {
+  final ValueChanged<String>? onSubmitted;
 
-class ChatInputField extends StatelessWidget {
   const ChatInputField({
     Key? key,
+    this.onSubmitted,
   }) : super(key: key);
+
+  @override
+  State<ChatInputField> createState() => _ChatInputFieldState();
+}
+
+class _ChatInputFieldState extends State<ChatInputField> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +52,7 @@ class ChatInputField extends StatelessWidget {
             const SizedBox(width: kDefaultPadding),
             Expanded(
               child: Container(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: kDefaultPadding * 0.75,
                 ),
                 decoration: BoxDecoration(
@@ -49,12 +70,17 @@ class ChatInputField extends StatelessWidget {
                           .withOpacity(0.64),
                     ),
                     const SizedBox(width: kDefaultPadding / 4),
-                    const Expanded(
+                    Expanded(
                       child: TextField(
+                        controller: _controller,
                         decoration: InputDecoration(
                           hintText: "Type message",
                           border: InputBorder.none,
                         ),
+                        onSubmitted: (value) {
+                          widget.onSubmitted?.call(value);
+                          _controller.text = "";
+                        },
                       ),
                     ),
                     Icon(

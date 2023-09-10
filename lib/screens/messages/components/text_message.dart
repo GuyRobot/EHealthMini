@@ -14,6 +14,7 @@ class TextMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.68),
       // color: MediaQuery.of(context).platformBrightness == Brightness.dark
       //     ? Colors.white
       //     : Colors.black,
