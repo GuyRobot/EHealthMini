@@ -69,7 +69,7 @@ class _ChatInputFieldState extends State<ChatInputField> {
                           .color!
                           .withOpacity(0.64),
                     ),
-                    const SizedBox(width: kDefaultPadding / 4),
+                    const SizedBox(width: kDefaultPadding / 2),
                     Expanded(
                       child: TextField(
                         controller: _controller,
@@ -91,7 +91,7 @@ class _ChatInputFieldState extends State<ChatInputField> {
                           .color!
                           .withOpacity(0.64),
                     ),
-                    const SizedBox(width: kDefaultPadding / 4),
+                    const SizedBox(width: kDefaultPadding / 2),
                     Icon(
                       Icons.camera_alt_outlined,
                       color: Theme.of(context)
