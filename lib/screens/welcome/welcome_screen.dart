@@ -12,10 +12,10 @@ class WelcomeScreen extends StatelessWidget {
         child: Column(
           children: [
             const Spacer(flex: 2),
-            Image.asset("assets/images/welcome_image.png"),
+            Image.asset("assets/images/welcome_chatbot.jpg"),
             const Spacer(flex: 3),
             Text(
-              "Welcome to our freedom \nmessaging app",
+              "Welcome to our healthcare \nchat app",
               textAlign: TextAlign.center,
               style: Theme.of(context)
                   .textTheme
@@ -24,7 +24,7 @@ class WelcomeScreen extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              "Freedom talk any person of your \nmother language.",
+              "Feel free to ask any questions \nrelated to healthcare.",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Theme.of(context)

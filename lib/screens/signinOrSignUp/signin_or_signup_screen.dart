@@ -18,9 +18,9 @@ class SigninOrSignupScreen extends StatelessWidget {
               const Spacer(flex: 2),
               Image.asset(
                 MediaQuery.of(context).platformBrightness == Brightness.light
-                    ? "assets/images/Logo_light.png"
-                    : "assets/images/Logo_dark.png",
-                height: 146,
+                    ? "assets/images/chatbot_logo.jpg"
+                    : "assets/images/chatbot_logo.jpg",
+                height: 512,
               ),
               const Spacer(),
               PrimaryButton(
