@@ -1,8 +1,9 @@
 import 'package:chat/components/primary_button.dart';
 import 'package:chat/constants.dart';
+import 'package:chat/screens/Signup/signup_screen.dart';
+import 'package:chat/screens/chats/chats_screen.dart';
+import 'package:chat/screens/signin/signin_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../messages/message_screen.dart';
 
 class SigninOrSignupScreen extends StatelessWidget {
   const SigninOrSignupScreen({Key? key}) : super(key: key);
@@ -24,19 +25,25 @@ class SigninOrSignupScreen extends StatelessWidget {
               ),
               const Spacer(),
               PrimaryButton(
-                text: "Sign In",
+                text: "Sign In".toUpperCase(),
                 press: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const MessagesScreen(),
+                    builder: (context) => const SigninScreen(),
                   ),
                 ),
               ),
               const SizedBox(height: kDefaultPadding * 1.5),
               PrimaryButton(
                 color: Theme.of(context).colorScheme.secondary,
-                text: "Sign Up",
-                press: () {},
+                text: "Sign Up".toUpperCase(),
+                textColor: kPrimaryColor,
+                press: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SignUpScreen(),
+                  ),
+                ),
               ),
               const Spacer(flex: 2),
             ],

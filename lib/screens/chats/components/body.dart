@@ -23,7 +23,7 @@ class Body extends StatelessWidget {
               const SizedBox(width: kDefaultPadding),
               FillOutlineButton(
                 press: () {},
-                text: "Active",
+                text: "Unread",
                 isFilled: false,
               ),
             ],
