@@ -89,7 +89,7 @@ class _SigninFormState extends State<SigninForm> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ChatsScreen(),
+                      builder: (context) => ChatsScreen(token: res!.token!, user: res.user!),
                     ),
                   );
                 } catch (e) {

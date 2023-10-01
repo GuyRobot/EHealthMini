@@ -7,12 +7,12 @@ class User {
   String? name;
   String? email;
   String? role;
+  @JsonKey(name: "_id")
+  String id;
 
-  User(
-      {this.name, this.email, this.role});
+  User({required this.id, this.name, this.email, this.role});
 
-  factory User.fromJson(Map<String, dynamic> json) =>
-      _$UserFromJson(json);
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 }

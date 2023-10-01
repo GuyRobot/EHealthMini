@@ -38,6 +38,8 @@ dependencies:
   built_value: 8.4.4
   json_annotation: 4.8.1
   build_runner_core: ^7.2.9
+  intl: ^0.18.0
+  timeago: 3.5.0
 
 dev_dependencies:
   retrofit_generator: '>=5.0.0 <6.0.0'

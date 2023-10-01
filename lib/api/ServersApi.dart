@@ -27,4 +27,29 @@ class ServersApi {
 
     return dio;
   }
+
+  static Dio buildAuthDio(String token, {String base = BASE_URL}) {
+    final dio = Dio()
+      ..options = BaseOptions(
+        baseUrl: base,
+        queryParameters: <String, dynamic>{r'key': ServersApi.API_KEY},
+        headers: <String, dynamic>{
+          r'Authorization': "Bearer ${token}",
+          "x-access-token": token,
+        },
+      );
+
+    dio.interceptors.addAll([
+      PrettyDioLogger(
+          requestHeader: true,
+          requestBody: true,
+          responseBody: true,
+          responseHeader: true,
+          error: true,
+          compact: true,
+          maxWidth: 90),
+    ]);
+
+    return dio;
+  }
 }

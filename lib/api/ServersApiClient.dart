@@ -1,4 +1,5 @@
 import 'package:chat/api/ServersApi.dart';
+import 'package:chat/models/ConversationResponse.dart';
 import 'package:chat/models/SigninRequest.dart';
 import 'package:chat/models/SigninResponse.dart';
 import 'package:chat/models/SignupRequest.dart';
@@ -17,4 +18,7 @@ abstract class ServersApiClient {
 
   @POST("authenticate")
   Future<SigninResponse>? signin(@Body() SigninRequest request);
+
+  @GET("users/{userId}/conversations")
+  Future<List<ConversationResponse>> getConversations(@Path("userId") String userId);
 }

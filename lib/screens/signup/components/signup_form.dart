@@ -94,11 +94,11 @@ class _SignUpFormState extends State<SignUpForm> {
                       email: _emailController.text,
                       password: _passwordController.text),
                 );
-                print("Response signin: " + res.toString());
+                print("Response signup: " + res.toString());
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ChatsScreen(),
+                    builder: (context) => ChatsScreen(token: res!.id, user: res),
                   ),
                 );
               } catch (e) {
