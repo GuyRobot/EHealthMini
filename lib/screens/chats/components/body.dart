@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
   final List<ConversationInfo> infos;
+
   Body({Key? key, required this.infos}) : super(key: key);
 
   @override
@@ -37,7 +38,9 @@ class Body extends StatelessWidget {
               press: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const MessagesScreen(),
+                  builder: (context) => MessagesScreen(
+                    conversationInfo: infos[index],
+                  ),
                 ),
               ),
             ),

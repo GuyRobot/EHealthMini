@@ -7,7 +7,10 @@ import 'package:chat/api/ServersApiClient.dart';
 import 'package:chat/constants.dart';
 import 'package:chat/models/ConversationInfo.dart';
 import 'package:chat/models/User.dart';
+import 'package:chat/screens/messages/message_screen.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 import 'components/body.dart';
 
@@ -26,6 +29,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
   int _selectedIndex = 1;
   late ServersApiClient _serversApiClient;
   late ChatbotsApiClient _chatbotsApiClient;
+  final uuid = Uuid();
   Future<List<ConversationInfo>>? conversationInfos;
 
   @override
@@ -60,10 +64,6 @@ class _ChatsScreenState extends State<ChatsScreen> {
       );
     }
 
-    print("Conversations: " + conversations.toString());
-    print("Conversations Info: " +
-        infos.map((e) => e.lastMessage()).toString().toString());
-
     return infos;
   }
 
@@ -76,15 +76,45 @@ class _ChatsScreenState extends State<ChatsScreen> {
         builder: (context, snapshot) {
           final data = snapshot.data;
           if (snapshot.hasData && data != null) {
-            return Body(infos: data,);
+            return Body(infos: data);
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () async {
+          try {
+            var conversation = await _serversApiClient
+                .newConversation(widget.user.id, {"conversationId": uuid.v1()});
+
+            var data = await conversationInfos;
+            data!.add(
+                ConversationInfo(conversation!.conversationId, events: []));
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MessagesScreen(
+                  conversationInfo:
+                      ConversationInfo(conversation.conversationId, events: []),
+                ),
+              ),
+            );
+          } catch (e) {
+            switch (e.runtimeType) {
+              case DioError:
+                // Here's the sample to get the failed response error code and message
+                final res = (e as DioError).response;
+                print("Got error : ${res!.statusCode} -> ${res.statusMessage}");
+                break;
+              default:
+                print("Got error : ${e.toString()}");
+                break;
+            }
+          }
+        },
         backgroundColor: kPrimaryColor,
         child: const Icon(
           Icons.person_add_alt_1,

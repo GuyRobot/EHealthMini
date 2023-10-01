@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ChatbotsApi {
-  static const String BASE_URL = "http://192.168.0.105:5005/";
+  static const String BASE_URL = "http://192.168.1.92:5005/";
 
   static getInstance() {}
 

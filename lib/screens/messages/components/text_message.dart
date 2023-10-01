@@ -19,8 +19,8 @@ class TextMessage extends StatelessWidget {
       //     ? Colors.white
       //     : Colors.black,
       padding: const EdgeInsets.symmetric(
-        horizontal: kDefaultPadding * 0.75,
-        vertical: kDefaultPadding / 2,
+        horizontal: kDefaultPadding * 1.5,
+        vertical: kDefaultPadding * 0.5,
       ),
       decoration: BoxDecoration(
         color: kPrimaryColor.withOpacity(message!.isSender ? 1 : 0.1),

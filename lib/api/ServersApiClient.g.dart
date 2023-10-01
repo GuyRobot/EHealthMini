@@ -13,7 +13,7 @@ class _ServersApiClient implements ServersApiClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.0.105:9000/';
+    baseUrl ??= 'http://192.168.1.92:9000/';
   }
 
   final Dio _dio;
@@ -91,6 +91,33 @@ class _ServersApiClient implements ServersApiClient {
         .map((dynamic i) =>
             ConversationResponse.fromJson(i as Map<String, dynamic>))
         .toList();
+    return value;
+  }
+
+  @override
+  Future<ConversationResponse>? newConversation(
+    userId,
+    request,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ConversationResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'users/${userId}/conversations',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ConversationResponse.fromJson(_result.data!);
     return value;
   }
 

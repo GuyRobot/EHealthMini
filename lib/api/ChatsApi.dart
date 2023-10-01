@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ChatsApi {
-  static const String BASE_URL = "https://guysmedchatt.serveo.net/webhook/";
+  static const String BASE_URL = "http://192.168.1.92:5005/";
   static const String USER_ID = "105664380703216036303";
   static const String API_KEY = "AIzaSyAwcSti2gPhjeCsoGaIybzDwowmTLzsDkY";
 

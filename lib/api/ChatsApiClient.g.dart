@@ -13,7 +13,7 @@ class _ChatsApiClient implements ChatsApiClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://guysmedchatt.serveo.net/webhook/';
+    baseUrl ??= 'http://192.168.1.92:5005/';
   }
 
   final Dio _dio;
@@ -21,26 +21,28 @@ class _ChatsApiClient implements ChatsApiClient {
   String? baseUrl;
 
   @override
-  Future<ChatResponse>? chat(request) async {
+  Future<List<ChatbotResponse>>? chat(request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ChatResponse>(Options(
+        .fetch<List<dynamic>>(_setStreamType<List<ChatbotResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'chat',
+              'webhooks/rest/webhook',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ChatResponse.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) => ChatbotResponse.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 

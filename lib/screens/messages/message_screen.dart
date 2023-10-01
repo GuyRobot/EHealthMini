@@ -1,16 +1,30 @@
 import 'package:chat/constants.dart';
+import 'package:chat/models/ChatMessage.dart';
+import 'package:chat/models/ConversationInfo.dart';
 import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 
-class MessagesScreen extends StatelessWidget {
-  const MessagesScreen({Key? key}) : super(key: key);
+class MessagesScreen extends StatefulWidget {
+  final List<ChatMessage> messages = [];
+  final ConversationInfo conversationInfo;
 
+  MessagesScreen({Key? key, required this.conversationInfo}) : super(key: key) {
+    this.messages.addAll(conversationInfo.getMessages());
+  }
+
+  @override
+  State<MessagesScreen> createState() => _MessagesScreenState();
+}
+
+class _MessagesScreenState extends State<MessagesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: const Body(),
+      body: Body(
+        conversationInfo: widget.conversationInfo,
+      ),
     );
   }
 

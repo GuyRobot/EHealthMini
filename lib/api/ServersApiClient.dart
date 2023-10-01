@@ -21,4 +21,7 @@ abstract class ServersApiClient {
 
   @GET("users/{userId}/conversations")
   Future<List<ConversationResponse>> getConversations(@Path("userId") String userId);
+
+  @POST("users/{userId}/conversations")
+  Future<ConversationResponse>? newConversation(@Path("userId") String userId, @Body() Map<String, String> request);
 }
