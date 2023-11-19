@@ -13,7 +13,7 @@ class _ChatbotsApiClient implements ChatbotsApiClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.1.92:5005/';
+    baseUrl ??= 'http://10.0.2.2:5005/';
   }
 
   final Dio _dio;

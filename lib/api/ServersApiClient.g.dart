@@ -13,7 +13,7 @@ class _ServersApiClient implements ServersApiClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.1.92:9000/';
+    baseUrl ??= 'http://10.0.2.2:9000/';
   }
 
   final Dio _dio;
