@@ -83,23 +83,30 @@ class _ChatInputFieldState extends State<ChatInputField> {
                         },
                       ),
                     ),
-                    Icon(
-                      Icons.attach_file,
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .color!
-                          .withOpacity(0.64),
-                    ),
                     const SizedBox(width: kDefaultPadding / 2),
-                    Icon(
-                      Icons.camera_alt_outlined,
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .color!
-                          .withOpacity(0.64),
+                    GestureDetector(
+                      onTap: () {
+                        widget.onSubmitted?.call(_controller.text);
+                        _controller.text = "";
+                      },
+                      child: Icon(
+                        Icons.send,
+                        color: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .color!
+                            .withOpacity(0.64),
+                      ),
                     ),
+                    // const SizedBox(width: kDefaultPadding / 2),
+                    // Icon(
+                    //   Icons.camera_alt_outlined,
+                    //   color: Theme.of(context)
+                    //       .textTheme
+                    //       .bodyLarge!
+                    //       .color!
+                    //       .withOpacity(0.64),
+                    // ),
                   ],
                 ),
               ),
